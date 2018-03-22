@@ -1,14 +1,141 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style> body {padding: 0; margin: 0;} </style>
-    <script src="../p5.min.js"></script>
-    <script src="../addons/p5.dom.min.js"></script>
-    <script src="../addons/p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
-  </head>
-  <body>
-    <h1>Quueeeennie<h1>
-  </body>
+
+<head>
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.min.js"></script>
+  <script src="../addons/p5.dom.min.js"></script>
+  <script src="../addons/p5.sound.min.js"></script>
+  <script src="../addons/jquery-3.3.1.min.js"></script>
+  <script src="../addons/TimelineMax.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <h1>Quueeeennie</h1>
+  <section class="section">
+    <div class="container">
+      <div style="max-width:600px">
+        <div id="fig-container" style="width:100%; overflow:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" id="fig" viewBox="-33 -25 400 400">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: #33ecc1;
+                }
+
+                .cls-2,
+                .cls-3,
+                .cls-4,
+                .cls-5,
+                .cls-6,
+                .cls-7 {
+                  fill: none;
+                  stroke-linecap: round;
+                  stroke-miterlimit: 10;
+                }
+
+                .cls-2,
+                .cls-3,
+                .cls-4 {
+                  stroke: #33ecc1;
+                }
+
+                .cls-2 {
+                  stroke-width: 17.01px;
+                }
+
+                .cls-3 {
+                  stroke-width: 15px;
+                }
+
+                .cls-4,
+                .cls-5 {
+                  stroke-width: 7px;
+                }
+
+                .cls-5,
+                .cls-6,
+                .cls-7 {
+                  stroke: #fff;
+                }
+
+                .cls-6 {
+                  stroke-width: 13px;
+                }
+
+                .cls-7 {
+                  stroke-width: 6px;
+                }
+              </style>
+            </defs>
+            <rect id="fig-body" width="72" height="119" x="128.56" y="116.82" class="cls-1" rx="12" ry="12" />
+            <g id="fig-legs">
+              <path id="fig-left-leg" d="M137.56 226.82c-25.63 31.2-34.12 69.13-27.5 113l-30 .5" class="cls-2" />
+              <path id="fig-right-leg" d="M191.56 226.82c31.66 29 37.26 67.77 25.5 113h30" class="cls-2" />
+            </g>
+            <g id="fig-arms">
+              <g id="fig-left-arm-hand">
+                <path id="fig-left-arm" d="M137.06 126.32c-38.29 16.48-74.16 15.49-108 0" class="cls-3" />
+                <g id="fig-left-hand">
+                  <circle cx="29.06" cy="126.32" r="13.5" class="cls-1" />
+                  <path d="M29.06 126.32l17.5-17.5M29.06 126.32l-6.87-23.77M29.06 126.32l-18.78-16.11M29.06 126.32l-24.54-3.17M29.06 126.32L6.8 137.13"
+                    class="cls-4" />
+                </g>
+              </g>
+              <g id="fig-right-arm-hand">
+                <path id="figh-right-arm" d="M300.06 126.32c-34.33 17-70.52 15-108 0" class="cls-3" />
+                <g id="fig-right-hand">
+                  <circle cx="300.06" cy="126.32" r="13.5" class="cls-1" />
+                  <path d="M300.06 126.32l-17.5-17.5M300.06 126.32l6.88-23.77M300.06 126.32l18.79-16.11M300.06 126.32l24.55-3.17M300.06 126.32l22.27 10.81"
+                    class="cls-4" />
+                </g>
+              </g>
+            </g>
+            <g id="fig-head">
+              <g id="fig-ears">
+                <ellipse id="fig-right-ear" cx="218.23" cy="57.24" class="cls-1" rx="9.64" ry="13.46" />
+                <ellipse id="fig-left-ear" cx="110.89" cy="57.24" class="cls-1" rx="9.64" ry="13.46" />
+              </g>
+              <g id="fig-hair">
+                <path d="M164.56 64.73l-50.37-31.41M164.56 64.73l-42.05-41.9M164.56 64.73l-31.59-50.26M164.56 64.73L145.03 8.67M164.56 64.73l-6.47-59.01M164.56 64.73l6.92-58.96M164.56 64.73l19.95-55.91M164.56 64.73l31.97-50.02M164.56 64.73l42.37-41.58M164.56 64.73l50.61-31.03"
+                  class="cls-4" />
+              </g>
+              <ellipse id="fig-skull" cx="164.56" cy="64.73" class="cls-1" rx="48" ry="52.09" />
+              <g id="fig-face">
+                <path id="fig-mouth" d="M139.62 86.21q24.94 18.26 49.89 0" class="cls-5" />
+                <g id="fig-eyes">
+                  <path id="fig-right-eye" d="M178.93 49.59v8.63" class="cls-5" />
+                  <path id="fig-left-eye" d="M150.2 49.59v8.63" class="cls-5" />
+                </g>
+              </g>
+              <g id="fig-face-2">
+                <path id="fig-mouth-2" d="M155.89 89.28q8.68-13.68 17.35 0" class="cls-6" />
+                <g id="fig-eyes-2">
+                  <g id="fig-left-eye-2">
+                    <path id="fig-left-eye-2-1" d="M186.49 49.21l-12.19 7.04" class="cls-7" />
+                    <path id="fig-left-eye-2-2" d="M188.2 58.46l-13.9-2.21" class="cls-7" />
+                  </g>
+                  <g id="fig-right-eye-2">
+                    <path id="fig-right-eye-2-1" d="M142.64 49.21l12.19 7.04" class="cls-7" />
+                    <path id="fig-right-eye-2-2" d="M140.92 58.46l13.91-2.21" class="cls-7" />
+                  </g>
+                </g>
+              </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>
+
+
+<html>
