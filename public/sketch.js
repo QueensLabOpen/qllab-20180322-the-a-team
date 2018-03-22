@@ -2,7 +2,7 @@
 var socket = new WebSocket('ws://localhost:40510');
 
 socket.onopen = function(event) {
-  alert('Boom');
+  console.log('Websocket connected');
 }
 
 socket.onmessage = function(event) {
