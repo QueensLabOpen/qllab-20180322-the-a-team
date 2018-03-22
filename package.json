@@ -1,0 +1,19 @@
+{
+  "name": "the-a-team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "p5.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QueensLabOpen/qllab-20180322-the-a-team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QueensLabOpen/qllab-20180322-the-a-team/issues"
+  },
+  "homepage": "https://github.com/QueensLabOpen/qllab-20180322-the-a-team#readme"
+}

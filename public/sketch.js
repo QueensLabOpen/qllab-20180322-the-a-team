@@ -1,3 +1,14 @@
+// Create a new WebSocket.
+var socket = new WebSocket('ws://localhost:40510');
+
+socket.onopen = function(event) {
+  alert('Boom');
+}
+
+socket.onmessage = function(event) {
+  console.log(event.data);
+}
+
 function setup() {
   // put setup code here
   createCanvas(800, 600);
@@ -5,10 +16,5 @@ function setup() {
 
 function draw() {
   // put drawing code here
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  ellipse(mouseX, mouseY, 30, 30);
+
 }
