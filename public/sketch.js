@@ -1,28 +1,3 @@
-class Queue {
-  constructor() {
-    this.content = [];
-    this.buffer = '';
-  }
-
-  add (input) {
-    this.buffer += input;
-    // console.log(this.buffer);
-    if (this.buffer.includes(';')) {
-      this.content.push(this.buffer.trim());
-      this.buffer = '';
-    } else {
-      // Do nothing, wait for more input
-    }
-  }
-
-  getFirst() {
-    return this.content.shift();
-  }
-}
-
-let inputQueue = new Queue();
-let latestInput = '';
-
 var song;
 var fft;
 var button;
@@ -35,10 +10,7 @@ var osc;
 var pulse;
 var ws;
 
-// let re = /\d+;
-
 let baseSize = 20;
-
 
 // Create a new WebSocket.
 var socket = new WebSocket('ws://localhost:40510');
@@ -48,8 +20,6 @@ socket.onopen = function(event) {
 }
 
 socket.onmessage = function(event) {
-  // console.log(event.data);
-  // inputQueue.add(event.data);
     interpret(event.data);
 }
 
@@ -58,7 +28,6 @@ function preload() {
   innerHeight = window.innerHeight;
   innerWidth = window.innerWidth;
 }
-
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
@@ -91,9 +60,10 @@ function drawSound(input) {
 }
 
 function interpret(input) {
-  // if (typeof input === 'string' || input instanceof String && input.length >= 1) {
+    let value = getValuefrom(input);
+
     if (input.includes('p1')) {
-      baseSize = getValuefrom(input) /10;
+      baseSize =  value / 10;
       console.log('P1: ' + input + ' base: ' + baseSize);
     } else if (input.includes('p2')) {
 
@@ -102,8 +72,6 @@ function interpret(input) {
     } else if (input.includes('p4')) {
 
     }
-  // }
-
 }
 
 function getValuefrom(input) {
