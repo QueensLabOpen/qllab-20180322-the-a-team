@@ -1,3 +1,4 @@
+
 var song;
 var fft;
 var button;
@@ -9,7 +10,14 @@ var reverbDecay = 2;
 var osc;
 var pulse;
 var ws;
-var filter;
+var filter
+
+var image_arm_left;
+var image_arm_right;
+var image_torso;
+var image_head;
+var image_leg_left;
+var image_leg_right;
 
 let baseSize = 20;
 
@@ -36,6 +44,13 @@ function preload() {
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
+  image_arm_left = loadImage("images/left-arm.png");
+  image_arm_right = loadImage("images/right-arm.png");
+  image_torso = loadImage("images/torso.png");
+  image_head = loadImage("images/head.png");
+  image_leg_left = loadImage("images/left-leg.png");
+  image_leg_right = loadImage("images/right-leg.png");
+
   colorMode(HSB);
   angleMode(DEGREES);
   song.loop();
@@ -46,10 +61,11 @@ function setup() {
 }
 
 function draw() {
-  background('white');
+  background('gray');
 
-  drawSound();
-  drawSound2();
+  // drawSound();
+  // drawSound2();
+  drawSound3();
 }
 
 function drawSound() {
@@ -105,6 +121,79 @@ function drawSound2() {
     stroke(0,0,0);
     rect(x+5, height, bars_total_width / spectrum.length, h );
   }
+}
+
+function drawSound3() {
+  filter.freq(filterFreq);
+  filter.res(filterResonance);
+
+  var spectrum = fft.analyze();
+
+  var bass = fft.getEnergy("bass");
+  var lowMid = fft.getEnergy("lowMid");
+  var mid = fft.getEnergy("mid");
+  var highMid = fft.getEnergy("highMid");
+  var treble = fft.getEnergy("treble");
+
+  push();
+  translate(width/2 - 35, height/4 + 40);
+  rotate(radians(5*treble));
+  image(image_arm_left, -25, 50);
+  pop();
+
+  push();
+  translate(width/2 + 55, height/4 + 40);
+  rotate(radians(-5*treble));
+  image(image_arm_right, -25, 50);
+  pop();
+
+  push();
+  translate(width/2 + 20, height/4 + 130);
+  rotate(radians(5*bass));
+  image(image_leg_left, -25, 50);
+  pop();
+
+  push();
+  translate(width/2 - 20, height/4 + 130);
+  rotate(radians(5*highMid));
+  image(image_leg_right, -25, 50);
+  pop();
+
+  push();
+  translate(width/2, height/4);
+  // rotate(radians(5*bass));
+  image(image_torso, -25, 50);
+  pop();
+
+  push();
+  translate(width/2 - 95, height/4 - 60);
+  rotate(radians(10*mid - 5*highMid));
+  image(image_head, -25, 50);
+  pop();
+
+  // var features_base_x = 400;
+  // var features_base_width = 20;
+  // rect(features_base_x, height, features_base_width, -bass );
+  // features_base_x += features_base_width;
+  // rect(features_base_x, height, features_base_width, -lowMid );
+  // features_base_x += features_base_width;
+  // rect(features_base_x, height, features_base_width, -mid );
+  // features_base_x += features_base_width;
+  // rect(features_base_x, height, features_base_width, -highMid );
+  // features_base_x += features_base_width;
+  // rect(features_base_x, height, features_base_width, -treble );
+
+  //noStroke();
+  //translate(width / 2, height / 2);
+  // var bars_total_width = width / 6;
+  // var bars_total_height = height / 3;
+  //
+  // for (var i = 0; i< spectrum.length; i++){
+  //   var x = map(i, 0, spectrum.length, 0, bars_total_width);
+  //   var h = -bars_total_height + map(spectrum[i], 0, 255, bars_total_height, 0);
+	// stroke(0,0,0);
+  //   rect(x+5, height, bars_total_width / spectrum.length, h )
+  // }
 }
 
 function interpret(input) {
